@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Expert - DR. EXPERT</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700&amp;display=swap">
+    <link rel="stylesheet" href="{% static 'font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{% static 'static.css'%}">
+    <script rel="stylesheet" href="{% static 'bootstrap.min.js'%}"></script>
+    <script rel="stylesheet" href="{% static 'grayscale.js'%}"></script>
+</head>
+
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="77">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="{%url 'index'%}">DR. EXPERT</a><button data-bs-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item nav-link"><a class="nav-link active" href="#about">About</a></li>
+                    <li class="nav-item nav-link"><a class="nav-link" href="{%url 'expertpage'%}">Expert</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead" style="background-image: url('{% get_media_prefix %}piron-guillaume-kJwZxH6jins-unsplash.jpg');">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h1 class="brand-heading">DR. EXPERT</h1>
+                        <p class="intro-text">THE BEST MEDICAL AI EXPERT SYSTEM FOR YOU BY THE BEST STUDENTS</p><a class="btn btn-link btn-circle" role="button" href="#about"><i class="fa fa-angle-double-down animated"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+   
+    <section class="text-center content-section" id="symptom-checker">
+        <div class="container">
+          <h2>Symptom Checker</h2>
+          <div class="row">
+            <div class="col-lg-6 mx-auto">
+              <form id="symptom-form" method="post" action="{% url 'symptom_checker' %}">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="name">Your name:</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                  </div>
+                  <label>Symptoms:</label>
+                  <div class="symptom-list">
+                    <div class="row">
+                      <div class="col-md-12">
+                        {% for symptom in symptomes %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="symptoms" value="{{ symptom }}" id="check-{{ symptom }}">
+                            <label class="form-check-label" for="check-{{ symptom }}">
+                              {{ symptom }}
+                            </label>
+                          </div>
+                        {% endfor %}
+                      </div>
+                      <div class="col-md-6">
+                      
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary">Check Symptoms</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div id="result"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="text-center content-section" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                            <h2>About Dr. Expert</h2>
+        <p>Dr. Expert is an expert system designed to assist medical professionals with the diagnosis of various medical conditions. It uses a knowledge base of symptoms and their corresponding diagnoses to provide accurate and reliable suggestions for medical diagnosis.</p>
+        <p>Our system is designed to be user-friendly and efficient, allowing medical professionals to quickly and easily input patient symptoms and receive a list of potential diagnoses.</p>
+        <p>Dr. Expert is constantly updated with the latest medical research and findings to ensure that it provides the most accurate and up-to-date diagnoses possible.</p>
+                        </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="map-clean"></div>
+    <footer>
+        <div class="container text-center">
+            <p>Copyright ©&nbsp;DR. EXPERT 2023</p>
+        </div>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/grayscale.js"></script>
+    <style>
+                /* Change checkbox color */
+        input[type="checkbox"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-right: 5px;
+        vertical-align: middle;
+        cursor: pointer;
+        }
+
+        label {
+        color: #fff;
+        }
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+          }
+          input[type="checkbox"] {
+            vertical-align: middle;
+          }
+          
+          label {
+            word-break: break-all;
+          }
+          
+          
+
+        /* Change background color of form and symptom list */
+        #symptom-form, .symptom-list {
+        background-color: #333;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        }
+
+        /* Change color of submit button */
+        button[type="submit"] {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        }
+
+    </style>
+</body>
+
+</html>
