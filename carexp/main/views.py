@@ -65,7 +65,7 @@ def generate_prescription_for_disease(disease):
 
 def create_medical_prescription(patient_name, doctor_name, diseases, filename):
     # Obtenir la date actuelle
-    prescription_date = datetime.datetime.now().strftime("%Y-%m-%d")
+    prescription_date = datetime.datetime.now()
     
     # Créer un document PDF
     doc = SimpleDocTemplate(filename, pagesize=letter)
