@@ -1,4 +1,4 @@
-from aima3.logic import *
+"""from aima3.logic import *
 from aima3.utils import *
 
 symptomes = ["Fievre", "Douleur_abdominale", "Nausees", "Vomissements", "Diarrhee", "Maux_de_tete","Douleur_thoracique", "Essoufflement", "Eruptions_cutanees", "Fatigue", "Perte_de_poids","Toux", "Sensation_de_bruleur_en_urinant", "Douleurs_musculaires", "Douleurs_articulaires"]
@@ -115,4 +115,4 @@ def diagnostiquer(name,fc):
         print('aucune malade a diagnostiquer ')
 
 
-diagnostiquer(name,fc)
+diagnostiquer(name,fc)"""
